@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobPositionsService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionsDao;
 import kodlamaio.hrms.entities.concretes.JobPositions;
 
@@ -32,9 +34,14 @@ public class JobPositionsManager implements JobPositionsService{
 
 	@Override
 	public Result add(JobPositions jobPosition) {
+		if(jobPositionsDao.findByPositionNameEquals(jobPosition.getPositionName()) != null) {
+			return new ErrorResult("Bu is pozisyonu zaten sisteme kayitli!");
+			
+		}else {
+			this.jobPositionsDao.save(jobPosition);
+		return new SuccessResult("İs pozisyonu basariyla eklendi!");
+		}
 		
-		this.jobPositionsDao.save(jobPosition);
-		return new SuccessDataResult<JobPositions>("İs pozisyonu eklendi!");
 	}
 
 }

@@ -1,10 +1,8 @@
-package kodlamaio.hrms.core.utilities.validation.concretes;
+package kodlamaio.hrms.core.adapters;
 
 import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
-
-import kodlamaio.hrms.core.utilities.validation.abstracts.EmailCheckService;
 
 @Service
 public class EmailCheckManager implements EmailCheckService{

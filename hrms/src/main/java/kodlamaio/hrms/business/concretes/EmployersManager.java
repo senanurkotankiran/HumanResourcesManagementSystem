@@ -1,17 +1,19 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmployersService;
+import kodlamaio.hrms.core.adapters.EmailCheckService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.core.utilities.validation.abstracts.EmailCheckService;
 import kodlamaio.hrms.core.utilities.validation.abstracts.EmailValidationService;
 import kodlamaio.hrms.core.utilities.validation.abstracts.EmployeesValidationService;
 import kodlamaio.hrms.dataAccess.abstracts.EmployersDao;
@@ -77,5 +79,7 @@ public class EmployersManager implements EmployersService {
 		}
 
 	}
+
+	
 
 }

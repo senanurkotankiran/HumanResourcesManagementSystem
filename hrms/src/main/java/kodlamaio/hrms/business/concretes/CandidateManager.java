@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidatesService;
+import kodlamaio.hrms.core.adapters.EmailCheckService;
 import kodlamaio.hrms.core.adapters.FakeMernisService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.core.utilities.validation.abstracts.EmailCheckService;
 import kodlamaio.hrms.core.utilities.validation.abstracts.EmailValidationService;
 import kodlamaio.hrms.dataAccess.abstracts.CandidatesDao;
 import kodlamaio.hrms.entities.concretes.Candidates;

@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.utilities.validation.abstracts;
+package kodlamaio.hrms.core.adapters;
 
 public interface EmailCheckService {
 

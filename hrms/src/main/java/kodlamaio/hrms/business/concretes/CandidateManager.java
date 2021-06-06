@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidatesService;
 import kodlamaio.hrms.core.adapters.EmailCheckService;
-import kodlamaio.hrms.core.adapters.FakeMernisService;
+//import kodlamaio.hrms.core.adapters.FakeMernisService;
+import kodlamaio.hrms.core.adapters.MernisCheckService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -22,18 +23,19 @@ import kodlamaio.hrms.entities.concretes.Candidates;
 public class CandidateManager implements CandidatesService{
 	
 	private CandidatesDao candidatesDao;
-	private FakeMernisService fakeMernisService;
 	private EmailCheckService emailCheckService;
 	private EmailValidationService emailValidationService;
+	private MernisCheckService mernisCheckService;
 
 	@Autowired
-	public CandidateManager(CandidatesDao candidatesDao, FakeMernisService fakeMernisService,
-			EmailCheckService emailCheckService, EmailValidationService emailValidationService) {
+	public CandidateManager(CandidatesDao candidatesDao, 
+			EmailCheckService emailCheckService, EmailValidationService emailValidationService,
+			MernisCheckService mernisCheckService) {
 		super();
 		this.candidatesDao = candidatesDao;
-		this.fakeMernisService = fakeMernisService;
 		this.emailCheckService = emailCheckService;
 		this.emailValidationService = emailValidationService;
+		this.mernisCheckService = mernisCheckService;
 	}
 	
 	
@@ -49,13 +51,13 @@ public class CandidateManager implements CandidatesService{
 	public Result add(Candidates candidates) {
 		if(		candidates.getFirstName().isBlank()
 				|| candidates.getLastName().isBlank()
-				|| candidates.getBirthDate() == null
 				|| candidates.getEmail().isBlank()
 				|| candidates.getPassword().isBlank()
-				|| candidates.getNationalityId().isBlank()) {
+				|| candidates.getNationalityId().isBlank()
+				|| candidates.getBirthDate() == 0) {
 			return new ErrorResult("Hicbir alan bos birakilamaz!");
 			
-		}else if(!fakeMernisService.chekIfRealPerson(candidates)) {
+		}else if(!mernisCheckService.checkIfRealPerson(candidates)) {
 			return new ErrorResult("Mernis bilgileri dogrulanamadi!");
 			
 		}else if(!emailCheckService.checkIfRealEmail(candidates.getEmail())) {

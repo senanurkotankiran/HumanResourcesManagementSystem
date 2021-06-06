@@ -1,7 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +29,7 @@ public class Candidates extends Users{
 	private String nationalityId;
 	
 	@Column(name = "birth_date")
-	private Date birthDate;
+	private int birthDate;
 	
 	private String passwordRepeat;
 }
